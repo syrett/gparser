@@ -14,10 +14,14 @@ func init() {
 	}
 }
 
+func RegisterFunc(name string, calacFunc func(args []ast.Expr, data map[string]interface{}) interface{}) {
+	funcNameMap[name] = calacFunc
+}
+
 // inArray 判断变量是否存在在数组中
 func inArray(args []ast.Expr, data map[string]interface{}) interface{} {
 	// 规则表达式中的变量
-	param := eval(args[0], data)
+	param := Eval(args[0], data)
 	vRange, ok := args[1].(*ast.CompositeLit)
 	if !ok {
 		return errors.New("func in_array 2ed params is not a composite lit")
@@ -26,7 +30,7 @@ func inArray(args []ast.Expr, data map[string]interface{}) interface{} {
 	// 规则表达式中数组里的元素
 	eltNodes := make([]interface{}, 0, len(vRange.Elts))
 	for _, p := range vRange.Elts {
-		elt := eval(p, data)
+		elt := Eval(p, data)
 		eltNodes = append(eltNodes, elt)
 	}
 
