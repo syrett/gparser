@@ -14,7 +14,7 @@ func init() {
 	}
 }
 
-func RegisterFunc(name string, calacFunc func(args []ast.Expr, data map[string]interface{}) interface{}) {
+func RegisterCalcFunc(name string, calacFunc func(args []ast.Expr, data map[string]interface{}) interface{}) {
 	funcNameMap[name] = calacFunc
 }
 
