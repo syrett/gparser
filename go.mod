@@ -1,3 +1,3 @@
-module github.com/wangxin1248/gparser
+module github.com/syrett/gparser
 
-go 1.17
+go 1.20
