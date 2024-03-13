@@ -6,15 +6,17 @@ import (
 )
 
 // 注册可执行函数
-var funcNameMap = map[string]func(args []ast.Expr, data map[string]interface{}) interface{}{}
+var funcNameMap = map[string]CalcFunc{}
 
 func init() {
-	funcNameMap = map[string]func(args []ast.Expr, data map[string]interface{}) interface{}{
+	funcNameMap = map[string]CalcFunc{
 		"in_array": inArray,
 	}
 }
 
-func RegisterCalcFunc(name string, calacFunc func(args []ast.Expr, data map[string]interface{}) interface{}) {
+type CalcFunc func(args []ast.Expr, data map[string]interface{}) interface{}
+
+func RegisterCalcFunc(name string, calacFunc CalcFunc) {
 	funcNameMap[name] = calacFunc
 }
 
