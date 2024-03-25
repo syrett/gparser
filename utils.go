@@ -48,6 +48,21 @@ func castToBoolean(data interface{}) (bool, error) {
 			return false, nil
 		}
 		return strconv.ParseBool(t)
+
+	case int:
+		// 数字不为0，则为真
+		return int64(t) != 0, nil
+	case int16:
+		return int64(t) != 0, nil
+	case int32:
+		return int64(t) != 0, nil
+	case int64:
+		return int64(t) != 0, nil
+	case float32:
+		return int64(t) != 0, nil
+	case float64:
+		return int64(t) != 0, nil
+
 	default:
 		return false, fmt.Errorf("type cast failure, unexpected boolean value: %v", data)
 	}
