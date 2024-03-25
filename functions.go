@@ -20,6 +20,11 @@ func RegisterCalcFunc(name string, calacFunc CalcFunc) {
 	funcNameMap[name] = calacFunc
 }
 
+func CalcFuncIsExist(funcName string) bool {
+	_, ok := funcNameMap[funcName]
+	return ok
+}
+
 // inArray 判断变量是否存在在数组中
 func inArray(args []ast.Expr, data map[string]interface{}) interface{} {
 	// 规则表达式中的变量
