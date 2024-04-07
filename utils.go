@@ -121,7 +121,7 @@ func castToFloat(data interface{}) (interface{}, error) {
 	case uint64:
 		return float64(t), nil
 	case float32:
-		return t, nil
+		return float64(t), nil
 	case float64:
 		return t, nil
 	case json.Number:

@@ -59,6 +59,8 @@ func Eval(expr ast.Expr, data map[string]interface{}) interface{} {
 			return calculateForString(x, y, op)
 		case bool:
 			return calculateForBool(x, y, op)
+		case float64:
+			return calculateForFloat(x, y, op)
 		case error:
 			return errors.New(fmt.Sprintf("%+v %+v %+v eval failed", x, op, y))
 		default:
@@ -105,6 +107,13 @@ func getlitValue(basicLit *ast.BasicLit) interface{} {
 			return err
 		}
 		return value
+	case token.FLOAT:
+		value, err := strconv.ParseFloat(basicLit.Value, 64)
+		if err != nil {
+			return err
+		}
+		return value
 	}
 	return errors.New(fmt.Sprintf("%s is not support type", basicLit.Kind))
+
 }
