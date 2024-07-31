@@ -114,6 +114,22 @@ func TestGoParser_Match(t *testing.T) {
 			},
 			want: true,
 		},
+		{
+			name: "test_case12",
+			expr: "a < -1",
+			data: map[string]interface{}{
+				"a": -2,
+			},
+			want: true,
+		},
+		{
+			name: "test_case13",
+			expr: "a < -1.5",
+			data: map[string]interface{}{
+				"a": -2,
+			},
+			want: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

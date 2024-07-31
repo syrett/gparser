@@ -83,6 +83,17 @@ func Eval(expr ast.Expr, data map[string]interface{}) interface{} {
 				xb := x.(bool)
 				return !xb
 			}
+		case token.SUB:
+			switch x.(type) {
+			case int:
+				return 0 - x.(int)
+			case int64:
+				return 0 - x.(int64)
+			case float64:
+				return 0 - x.(float64)
+
+			}
+
 		}
 		return errors.New(fmt.Sprintf("%x type is not support", expr))
 	case *ast.Ident: // 匹配到变量
